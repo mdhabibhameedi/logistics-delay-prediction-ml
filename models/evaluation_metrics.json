@@ -1,0 +1,31 @@
+{
+  "dataset_records": 1000,
+  "training_records": 800,
+  "testing_records": 200,
+  "features": [
+    "region",
+    "distance_km",
+    "traffic_level",
+    "departure_hour",
+    "planned_delivery_minutes",
+    "temperature_c",
+    "humidity_percent",
+    "rainfall_mm"
+  ],
+  "baseline_metrics": {
+    "MAE": 7.0547,
+    "RMSE": 8.633,
+    "R2": 0.6104
+  },
+  "weather_model_metrics": {
+    "MAE": 6.9449,
+    "RMSE": 8.7369,
+    "R2": 0.601
+  },
+  "best_parameters": {
+    "model__max_depth": 8,
+    "model__min_samples_leaf": 3,
+    "model__n_estimators": 200
+  },
+  "synthetic_target": true
+}

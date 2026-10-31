@@ -1,0 +1,41 @@
+﻿# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+.aws/
+*.pem
+*.key
+credentials
+credentials.csv
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local SageMaker test artifacts
+deployment/local_model/
+deployment/local_output/
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+*~
+project-inventory.txt
+
+# Local archives
+*.zip
