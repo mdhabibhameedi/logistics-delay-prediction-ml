@@ -27,7 +27,6 @@ credentials.csv
 Thumbs.db
 
 # Local SageMaker test artifacts
-deployment/local_model/
 deployment/local_output/
 
 # Temporary files
