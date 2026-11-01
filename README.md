@@ -147,6 +147,22 @@ A previously verified local inference test returned `predicted_delay_minutes: [4
 | E07 | SageMaker inference response | [View](docs/evidence/E07-SageMaker-Endpoint-Inference.png) |
 | E08 | CloudWatch endpoint logs | [View](docs/evidence/E08-CloudWatch-Endpoint-Logs.png) |
 
+## Cloud cost estimation and actual usage summary
+
+**AWS region:** `eu-north-1` (Stockholm). The following actual amounts are from the supplied **October 2026 AWS Cost Explorer account-level breakdown**; they are not a separately itemized M6 project invoice.
+
+| AWS service | Actual October 2026 (USD) | Cost estimation basis |
+| --- | ---: | --- |
+| Amazon SageMaker | $0.16 | Training instance-hours and temporary hosted endpoint uptime |
+| Amazon S3 | $0.00 | Stored datasets and model artifacts; varies by GB-month |
+| Amazon CloudWatch | $0.00 | Log ingestion and retention |
+| AWS IoT, Glue and KMS | $0.00 | No billed usage in the supplied period breakdown |
+| **Total** | **$0.16** | **Recorded account-level total** |
+
+**Planning estimate:** For a comparable short training-and-test rerun, **approximately $0.16** is a historical-usage-based reference, **not a guaranteed quote**. Future cost depends on the SageMaker training and endpoint instance types, uptime, regional rates, S3 storage and CloudWatch usage. Exact hourly pricing and usage durations were not supplied, so a separately calculated instance-hour estimate is not asserted.
+
+**Cost controls:** The inference endpoint, endpoint configuration and hosted model were deleted after successful testing. The S3 bucket remains temporarily retained pending submission cleanup. Displayed billing totals may change with subsequent AWS billing updates.
+
 ## Security and cost management
 
 SageMaker used an execution role to access the resources required for model training and deployment. The implementation uses cloud service roles and S3 for dataset and artifact handling; permissions should be reviewed against least-privilege requirements before any future deployment. Credentials and `.env` files are excluded from version control by `.gitignore`.
