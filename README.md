@@ -13,24 +13,15 @@ A cloud-based machine learning project for predicting shipment delivery delays u
 - Preserve evaluation results, cloud execution evidence, and model artifacts.
 - Demonstrate cost-aware cloud resource management.
 
-## Architecture
+## AWS architecture
 
-```mermaid
-flowchart LR
-    A[Shipment data generation] --> C[Preprocessing and feature engineering]
-    B[Weather data integration] --> C
-    C --> D[Processed ML dataset]
-    D --> E[Amazon S3]
-    E --> F[Amazon SageMaker training]
-    F --> G[Trained model artifact in S3]
-    G --> H[SageMaker hosted inference endpoint]
-    H --> I[Prediction response]
-    F --> J[Amazon CloudWatch logs]
-    H --> J
-    D --> K[Local model evaluation and inference]
-```
+The architecture below documents the implemented data pipeline, SageMaker training and inference, IAM execution role, and CloudWatch monitoring in **eu-north-1 (Stockholm)**.
 
-This is a conceptual workflow. The separately prepared architecture diagram will be added to `docs/` and linked here after review.
+![Logistics Delay Prediction — AWS Architecture](docs/diagrams/logistics_delay_architecture.png)
+
+[View the full-resolution architecture diagram](docs/diagrams/logistics_delay_architecture.png)
+
+The SageMaker inference endpoint shown in the diagram was successfully tested and later deleted to control costs; it is **not currently running**.
 
 ## Technology stack
 
@@ -100,6 +91,12 @@ The SageMaker training job completed, the inference endpoint reached `InService`
 
 The downloaded SageMaker archives are preserved as [`models/model.tar.gz`](models/model.tar.gz) and [`models/output.tar.gz`](models/output.tar.gz). Both archives were validated as readable gzip-compressed tar files.
 
+## Project files and deliverables
+
+**University report:** [AI/ML Solution — M6 Report (DOCX)](docs/AI-ML-Solution-M6-Report.docx)
+
+**Architecture:** [Logistics Delay Prediction on AWS (PNG)](docs/diagrams/logistics_delay_architecture.png)
+
 ## Repository structure
 
 | Folder | Purpose |
@@ -111,8 +108,10 @@ The downloaded SageMaker archives are preserved as [`models/model.tar.gz`](model
 | `notebooks/` | Reviewed notebook for local validation and cloud workflow documentation |
 | `docs/evidence/` | E01–E08 implementation screenshots |
 | `docs/plots/` | Three model evaluation visualizations |
+| `docs/diagrams/` | Approved AWS architecture diagram |
+| `docs/` | Final university DOCX report and supporting materials |
 
-See the folders above for the full set of project files.
+The repository also contains `requirements.txt`, the root `README.md`, and `.gitignore`. The notebook documents historical AWS execution and runs local validation; it does not automatically provision cloud infrastructure.
 
 ## Local setup and verification
 
@@ -153,6 +152,15 @@ A previously verified local inference test returned `predicted_delay_minutes: [4
 SageMaker used an execution role to access the resources required for model training and deployment. The implementation uses cloud service roles and S3 for dataset and artifact handling; permissions should be reviewed against least-privilege requirements before any future deployment. Credentials and `.env` files are excluded from version control by `.gitignore`.
 
 The hosted SageMaker endpoint, endpoint configuration, and serving model were deleted after testing to avoid continuing inference hosting charges. The S3 bucket remains intentionally retained until final deliverables are complete; retained storage may still incur charges. Before any future cloud rerun, review SageMaker instance pricing, service quotas, IAM permissions, and resource cleanup requirements.
+
+## Submission deliverables
+
+- [Final university report (DOCX)](docs/AI-ML-Solution-M6-Report.docx)
+- [AWS architecture diagram (PNG)](docs/diagrams/logistics_delay_architecture.png)
+- [SageMaker notebook](notebooks/01_sagemaker_training.ipynb)
+- [Evaluation metrics (JSON)](models/evaluation_metrics.json)
+- [Evidence screenshots (E01–E08)](docs/evidence/)
+- [Model evaluation plots](docs/plots/)
 
 ## Conclusion
 
